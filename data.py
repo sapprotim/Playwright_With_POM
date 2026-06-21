@@ -29,13 +29,10 @@ clinic = search.iloc[8,1]
 fullerton_health = search.iloc[9,1]
 
 
-print("doctor_name:", doctor_name)
-print("user_name:", user_name)
 
 link = pd.read_excel("data.xlsx", sheet_name="Link", header=None)
 dashboard_link = link.iloc[1, 0]
 
-print(dashboard_link)
 
 
 

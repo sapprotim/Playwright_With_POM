@@ -4,6 +4,16 @@ data.xlsx
 *.env
 .env*
 
+# Dev/utility scripts with hardcoded credentials — keep local only
+apidataprint.py
+ddtest.py
+print api data.py
+data prinf.py
+read data.py
+
+# User data — PII, never commit
+user data.csv
+
 # Python cache
 __pycache__/
 *.pyc

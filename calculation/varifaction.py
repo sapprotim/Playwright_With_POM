@@ -1,8 +1,13 @@
 import re
+import sys
 import time
+from pathlib import Path
 from playwright.sync_api import sync_playwright
 from clinical_ws import clinical_WS
 from lifestyle_ws import lifestyle_WS
+
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from config import BASE_URL, USERNAME, PASSWORD
 
 def extract_number(text):
     match = re.findall(r"[-+]?[0-9]*\.?[0-9]+", text)
@@ -20,17 +25,19 @@ def run(playwright):
     context = browser.new_context()
     page = context.new_page()
 
-    # Login
-    page.goto("https://hpb-uat.connectedlife.io/#/login")
-    page.get_by_role("textbox", name="Username / Email").fill("hpbfullerton22+STM1@gmail.com")
-    page.get_by_role("textbox", name="Password eye-icon").fill("Wellness@123!")
+    # Login — credentials loaded from config.py (not committed)
+    page.goto(BASE_URL)
+    page.get_by_role("textbox", name="Username / Email").fill(USERNAME)
+    page.get_by_role("textbox", name="Password eye-icon").fill(PASSWORD)
     page.get_by_role("button", name="Sign In").click()
-    page.get_by_role("textbox", name="PIN").fill("312800")
+    otp = input("Enter OTP: ")
+    page.get_by_role("textbox", name="PIN").fill(otp)
     page.get_by_role("button", name="Submit").click()
 
-    # Search and select user
-    page.get_by_role("textbox", name="Search").fill("Partho")
-    page.get_by_role("table").get_by_text("Partho Protim Real").click()
+    # Search and select user — set SEARCH_USER in config.py
+    from config import SEARCH_USER
+    page.get_by_role("textbox", name="Search").fill(SEARCH_USER)
+    page.get_by_role("table").get_by_text(SEARCH_USER).click()
     time.sleep(10)
 
     # Set date to today
