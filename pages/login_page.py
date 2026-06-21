@@ -1,11 +1,11 @@
-import re
 import time
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
+from data import dashboard_link
 
 class LoginPage:
     def __init__(self, page: Page):
         self.page = page
-        self.url = "https://hpb-uat.connectedlife.io/#/login"
+        self.url = str(dashboard_link)
 
     def login(self, username, password, otp):
         self.page.goto(self.url)
