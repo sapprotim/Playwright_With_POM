@@ -1,0 +1,36 @@
+# Credentials & sensitive config — never commit these
+config.py
+data.xlsx
+*.env
+.env*
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Pytest / test artifacts
+.pytest_cache/
+.cache/
+report.html
+*_report.html
+failed_report.html
+screenshots/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Jupyter / data files
+*.ipynb_checkpoints
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs & temp
+*.log
+*.tmp
